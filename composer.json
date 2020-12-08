@@ -1,0 +1,17 @@
+{
+    "name": "sitepilot/block",
+    "description": "WordPress block library.",
+    "type": "library",
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Nick Jansen",
+            "email": "support@sitepilot.io"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "jenssegers/blade": "^1.4"
+    }
+}
