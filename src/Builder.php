@@ -52,9 +52,9 @@ class Builder
     {
         $this->block = $block;
 
-        $class = end(explode('\\', $this->block->class));
-        $this->module_class = "{$class}BuilderModule";
-        $this->module_file = $this->block->dir . "/builder/sp-" . strtolower(preg_replace('/(?<!^)[A-Z]/', '-$0', $class)) . ".php";
+        $reflect = new ReflectionClass($block);
+        $this->module_class = "{$reflect->getShortName()}BuilderModule";
+        $this->module_file = $this->block->dir . "/builder/sp-" . strtolower(preg_replace('/(?<!^)[A-Z]/', '-$0', $reflect->getShortName())) . ".php";
 
         if (file_exists($this->module_file)) {
             add_action('init', function () {
