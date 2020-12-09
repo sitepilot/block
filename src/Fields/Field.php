@@ -18,6 +18,11 @@ abstract class Field
      */
     public $attribute;
 
+    /**
+     * The default value of the field.
+     *
+     * @var string
+     */
     public $default;
 
     /**
@@ -49,7 +54,7 @@ abstract class Field
      * @param mixed $value
      * @return $this
      */
-    public function defaultValue($value)
+    public function default_value($value)
     {
         $this->default = $value;
 
