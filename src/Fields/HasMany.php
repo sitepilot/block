@@ -6,7 +6,18 @@ use FLBuilder;
 
 class HasMany extends Field
 {
+    /**
+     * The child block.
+     *
+     * @var Block
+     */
     private $block;
+
+    /**
+     * The preview attribute name.
+     *
+     * @var string
+     */
     private $preview_attribute;
 
     /**
@@ -23,12 +34,12 @@ class HasMany extends Field
         $this->block = new $class();
     }
 
-    public function preview_attribute($attribute)
-    {
-        $this->preview_attribute = $attribute;
-    }
-
-    public function builder_field()
+    /**
+     * Get builder field configuration.
+     *
+     * @return array
+     */
+    public function builder_field(): array
     {
         $form = get_class($this->block) . 'Form';
 
@@ -54,5 +65,18 @@ class HasMany extends Field
             'preview_text' => $this->preview_attribute,
             'multiple' => true
         ];
+    }
+
+    /**
+     * Set the preview attribute.
+     *
+     * @param string $attribute
+     * @return self
+     */
+    public function preview_attribute($attribute): self
+    {
+        $this->preview_attribute = $attribute;
+
+        return $this;
     }
 }
