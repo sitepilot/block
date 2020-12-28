@@ -44,7 +44,7 @@ class HasMany extends Field
         $form = get_class($this->block) . 'Form';
 
         FLBuilder::register_settings_form($form, array(
-            'title' => __('Shortcode', 'sitepilot-theme'),
+            'title' => __('Shortcode', 'sitepilot-block'),
             'tabs'  => array(
                 'general' => array(
                     'title' => __('General', 'fl-builder'),
