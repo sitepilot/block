@@ -90,6 +90,36 @@ abstract class Block
     }
 
     /**
+     * Get the category of the block.
+     *
+     * @return string   
+     */
+    public function category(): string
+    {
+        return __('Blocks', 'sitepilot-block');
+    }
+
+    /**
+     * Get the group of the block.
+     *
+     * @return string   
+     */
+    public function group(): string
+    {
+        return '';
+    }
+
+    /**
+     * Get additional view data for the block.
+     *
+     * @return array
+     */
+    public function view_data(): array
+    {
+        return [];
+    }
+
+    /**
      * Render block blade template.
      *
      * @param array $data

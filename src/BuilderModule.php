@@ -35,7 +35,8 @@ class BuilderModule extends FLBuilderModule
         parent::__construct(array(
             'name' => $this->block->name(),
             'description' => $this->block->description(),
-            'category' => __('Theme', 'sitepilot-theme'),
+            'category' => $this->block->category(),
+            'group' => $this->block->group(),
             'partial_refresh' => !$this->block->builder->full_width,
             'editor_export' => true,
             'enabled' => true
@@ -54,10 +55,10 @@ class BuilderModule extends FLBuilderModule
 
         FLBuilder::register_module(static::class, array(
             'general' => array(
-                'title' => __('Shortcode', 'sitepilot-theme'),
+                'title' => __('Shortcode', 'sitepilot-block'),
                 'sections' => array(
                     'general' => array(
-                        'title' => __('Settings', 'sitepilot-theme'),
+                        'title' => __('Settings', 'sitepilot-block'),
                         'fields' => $block->builder->fields()
                     )
                 )
