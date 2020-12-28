@@ -53,7 +53,7 @@ class BuilderModule extends FLBuilderModule
     {
         self::$_blocks[static::class] = $block;
 
-        FLBuilder::register_module(static::class, array(
+        FLBuilder::register_module(static::class, count($block->builder->fields()) > 0 ? [
             'general' => array(
                 'title' => __('Shortcode', 'sitepilot-block'),
                 'sections' => array(
@@ -63,7 +63,7 @@ class BuilderModule extends FLBuilderModule
                     )
                 )
             )
-        ));
+        ] : []);
 
         return $block;
     }
