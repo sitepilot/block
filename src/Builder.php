@@ -122,6 +122,8 @@ class Builder
             $data['slot'] = $settings->slot;
         }
 
+        $data = array_merge($this->block->view_data(), $data);
+
         return $this->block->render_view($data);
     }
 
