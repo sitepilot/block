@@ -123,8 +123,13 @@ class Builder
         }
 
         $data = array_merge($this->block->view_data(), $data);
+        $view = $this->block->render_view($data);
 
-        return $this->block->render_view($data);
+        if (empty(trim($view)) && isset($_GET['fl_builder'])) {
+            $view = sprintf('<div style="border: 1px dashed gray; padding: 20px; font-style: italic;">%s - %s</div>', $this->block->name(), __('This block doesn\'t have any content for the current post or page.', 'sitepilot-block'));
+        }
+
+        return $view;
     }
 
     /**
