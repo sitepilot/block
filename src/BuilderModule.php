@@ -55,7 +55,7 @@ class BuilderModule extends FLBuilderModule
 
         FLBuilder::register_module(static::class, count($block->builder->fields()) > 0 ? [
             'general' => array(
-                'title' => __('Shortcode', 'sitepilot-block'),
+                'title' => __('Block', 'sitepilot-block'),
                 'sections' => array(
                     'general' => array(
                         'title' => __('Settings', 'sitepilot-block'),

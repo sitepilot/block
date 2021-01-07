@@ -2,7 +2,7 @@
 
 namespace Sitepilot\Block\Fields;
 
-class Link extends Field
+class Textarea extends Field
 {
     /**
      * Get the builder field configuration.
@@ -12,9 +12,9 @@ class Link extends Field
     public function builder_field(): array
     {
         return [
-            'type' => 'link',
+            'type' => 'textarea',
             'label' => $this->name,
-            'show_target' => true
+            'default' => $this->default
         ];
     }
 }

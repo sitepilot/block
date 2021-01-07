@@ -2,16 +2,14 @@
 
 namespace Sitepilot\Block\Fields;
 
-use FLBuilder;
-
-class HasMany extends Field
+class Repeater extends Field
 {
     /**
-     * The child block.
+     * The form fields.
      *
-     * @var Block
+     * @var array
      */
-    private $block;
+    public $fields = [];
 
     /**
      * The preview attribute name.
@@ -25,13 +23,14 @@ class HasMany extends Field
      *
      * @param string $name
      * @param string $attribute
+     * @param string $class
      * @return void
      */
     public function __construct($name, $attribute, $class)
     {
         parent::__construct($name, $attribute);
 
-        $this->block = new $class();
+        $this->class = $class;
     }
 
     /**
@@ -41,17 +40,22 @@ class HasMany extends Field
      */
     public function builder_field(): array
     {
-        $form = get_class($this->block) . 'Form';
+        $form = $this->class . '_' . $this->attribute;
 
-        FLBuilder::register_settings_form($form, array(
-            'title' => __('Block', 'sitepilot-block'),
+        $fields = [];
+        foreach ($this->fields as $key => $field) {
+            $fields[$field->attribute] = $field->builder_field();
+        }
+
+        \FLBuilder::register_settings_form($form, array(
+            'title' => __('Shortcode', 'sitepilot-block'),
             'tabs'  => array(
                 'general' => array(
                     'title' => __('General', 'fl-builder'),
                     'sections' => array(
                         'general' => array(
                             'title' => '',
-                            'fields' => $this->block->builder->fields()
+                            'fields' => $fields
                         )
                     )
                 )
@@ -65,6 +69,19 @@ class HasMany extends Field
             'preview_text' => $this->preview_attribute,
             'multiple' => true
         ];
+    }
+
+    /**
+     * Set the form fields.
+     *
+     * @param array $fields
+     * @return self
+     */
+    public function fields(array $fields): self
+    {
+        $this->fields = $fields;
+
+        return $this;
     }
 
     /**

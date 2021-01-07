@@ -4,7 +4,12 @@ namespace Sitepilot\Block\Fields;
 
 class Number extends Field
 {
-    public function builder_field()
+    /**
+     * Get the builder field configuration.
+     *
+     * @return array
+     */
+    public function builder_field(): array
     {
         return [
             'type' => 'unit',
